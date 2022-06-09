@@ -1,0 +1,44 @@
+{
+  "name": "arthursatarov/wordpress-docker-compose",
+  "description": "",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    },
+    {
+      "type": "composer",
+      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/wordpress-plugin/"
+    }
+  ],
+  "require": {
+    "advanced-custom-fields/advanced-custom-fields-pro": "*",
+    "wpackagist-plugin/better-wp-security": "*",
+    "wpackagist-plugin/contact-form-7-honeypot": "*",
+    "wpackagist-plugin/contact-form-7": "*",
+    "wpackagist-plugin/custom-post-type-ui": "*",
+    "wpackagist-plugin/cyr2lat": "*",
+    "wpackagist-plugin/polylang": "*",
+    "wpackagist-plugin/seo-by-rank-math": "*",
+    "wpackagist-plugin/updraftplus": "*",
+    "wpackagist-plugin/wp-smushit": "*",
+    "wpackagist-plugin/wp-super-cache": "*"
+  },
+  "extra": {
+    "installer-paths": {
+     "www/app/plugins/{$name}": [
+        "type:wordpress-plugin"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pivvenit/acf-pro-installer": true,
+      "composer/installers": true
+    }
+  }
+}
