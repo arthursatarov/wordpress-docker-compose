@@ -1,0 +1,20 @@
+# WordPress core files
+www/wordpress
+
+# wp-content
+!www/app
+www/app/*
+
+# Themes
+!www/app/themes
+www/app/themes/*
+!www/app/themes/theme-name
+
+# Plugins
+!www/app/plugins
+www/app/plugins/*
+!www/app/plugins/plugin-name
+
+# Misc.
+database/
+vendor/
