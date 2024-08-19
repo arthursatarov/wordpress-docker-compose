@@ -1,0 +1,48 @@
+services:
+  wp:
+    depends_on:
+      - db
+    image: wordpress:${WP_VERSION}
+    container_name: ${PROJECT_NAME}_wp
+    volumes:
+      # CONFIGS
+      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      # APP
+      - ./web/wp-core:/var/www/html
+      - ./web/app/plugins:/var/www/html/wp-content/plugins
+      - ./web/app/themes:/var/www/html/wp-content/themes
+      - ./web/app/uploads:/var/www/html/wp-content/uploads
+    ports:
+      - ${WP_PORTS}
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DEBUG: ${WP_DEBUG}
+
+  db:
+    image: mysql:${MYSQL_VERSION}
+    container_name: ${PROJECT_NAME}_db
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+  pma:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    container_name: ${PROJECT_NAME}_pma
+    restart: always
+    ports:
+      - ${PMA_PORTS}
+    environment:
+      PMA_HOST: ${DB_HOST}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}

@@ -1,0 +1,22 @@
+# Folders
+# –––––––––––––––––––––––– #
+assets/
+mysql/
+node_modules/
+vendor/
+
+# Ignore all WordPress files,
+# except your theme/plugin
+web/wp-core
+web/app/plugins/*
+web/app/themes/*
+web/app/uploads
+
+# !web/app/themes/your_theme_name
+# !web/app/plugins/your_plugin_name
+
+# Files
+# –––––––––––––––––––––––– #
+.env
+auth.json
+composer.lock
